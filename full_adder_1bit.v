@@ -1,41 +1,24 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: University of St. Thomas - ENGR230
 // Engineer: Adam Osman
 //
-// Create Date: 05/05/2026 02:23:16 PM
-// Design Name: Four-Bit Adder
+// Create Date: 05/05/2026
 // Module Name: full_adder_1bit
-// Project Name: ENGR230 Lab - Four-Bit Adder
-// Target Devices: Basys3 / Artix-7
-// Tool Versions: Vivado 2018.2
-// Description: A single-bit full adder.
-//              Adds three 1-bit inputs (A, B, Cin) and produces
-//              a 1-bit Sum and a 1-bit Carry-out (Cout).
+// Project: ENGR230 Four-Bit Adder
+// Board: Basys3
+// Vivado Version: 2018.2
 //
-//              Truth table:
-//              A  B  Cin | Sum  Cout
-//              0  0   0  |  0     0
-//              0  0   1  |  1     0
-//              0  1   0  |  1     0
-//              0  1   1  |  0     1
-//              1  0   0  |  1     0
-//              1  0   1  |  0     1
-//              1  1   0  |  0     1
-//              1  1   1  |  1     1
+// Description:
+// Single bit full adder.
+// Adds A, B, and Cin to make Sum and Cout.
 //
-//              Boolean equations:
-//              Sum  = A ^ B ^ Cin
-//              Cout = (A & B) | (Cin & (A ^ B))
+// Logic:
+// Sum is 1 when the number of 1s is odd.
+// Cout is 1 when at least two inputs are 1.
 //
-// Dependencies: none
-//
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// Source/Citation: This Verilog was Claude-assisted for code structure,
-// comments, and debugging support. Final design choices and testing have been
-// reviewed and understood by Adam Osman before submission.
+// Source:
+// Claude helped with code structure, comments, and debugging.
+// Final testing and understanding of the design was done by Adam Osman.
 //////////////////////////////////////////////////////////////////////////////////
 
 module full_adder_1bit(
@@ -46,10 +29,10 @@ module full_adder_1bit(
     output Cout
 );
 
-    // Sum is 1 when an odd number of inputs are 1 (XOR of all three)
-    assign Sum  = A ^ B ^ Cin;
+    // sum bit for this position
+    assign Sum = A ^ B ^ Cin;
 
-    // Cout is 1 when at least two inputs are 1 (majority function)
+    // carry out goes high when two or more inputs are high
     assign Cout = (A & B) | (Cin & (A ^ B));
 
 endmodule
